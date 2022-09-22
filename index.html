@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>application</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="initGame()">
+
+
+  <div class="stopwatch-wrapper">
+    <p class="stopwatch">00:00:00:00</p>
+  </div>
+  <div class="changeFromEasyToHard">
+    <button class="Easy" onclick="changeFromEasyToHard(4,3)">Easy</button>
+    <button class="Medium" onclick="changeFromEasyToHard(8,6)">Medium</button>
+    <button class="Hard" onclick="changeFromEasyToHard(10,8)">Hard</button>
+  </div>
+  <h1>Minesweeper Rules:</h1>
+  <div class="container">
+    <h2>Minesweeper is a game where mines are hidden in a grid of squares. Safe squares have numbers telling you how
+      many mines touch the square. You can use the number clues to solve the game by opening all of the safe squares. If
+      you click on a mine you lose the game!</h2>
+    <div class="boardAndLives">
+      <button class="restartBtn" onclick="initGame()">😔</button>
+      <div class="board-container"></div>
+      <h5 class="lives">life: </h5>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/utils.js"></script>
+
+</body>
+
+</html>
