@@ -111,7 +111,7 @@ function clickedCell(elCell, cellI, cellJ) {
 
     if (elCell.minesAroundCount === 0) {
         expandShown(gBoard, cellI, cellJ)
-        elCell.style.backgroundColor = '#b8aeae'
+        elCell.style.backgroundColor = 'red'
 
     }
     if (gBoard[cellI][cellJ].isMine && !gBoard[cellI][cellJ].isShown) {
