@@ -20,15 +20,13 @@
     <button class="Medium" onclick="changeFromEasyToHard(8,6)">Medium</button>
     <button class="Hard" onclick="changeFromEasyToHard(10,8)">Hard</button>
   </div>
-  <h1>Minesweeper Rules:</h1>
   <div class="container">
-    <h2>Minesweeper is a game where mines are hidden in a grid of squares. Safe squares have numbers telling you how
-      many mines touch the square. You can use the number clues to solve the game by opening all of the safe squares. If
-      you click on a mine you lose the game!</h2>
+    <button class="rules" onclick="rules()">Click to see Minesweeper rules!</button>
     <div class="boardAndLives">
       <button class="restartBtn" onclick="initGame()">😔</button>
       <div class="board-container"></div>
       <h5 class="lives">life: </h5>
+      <h1></h1>
     </div>
   </div>
 

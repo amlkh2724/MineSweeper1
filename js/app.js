@@ -16,7 +16,6 @@ var life = 3
 gLevel = { SIZE: 7, MINES: 3 }
 
 function initGame() {
-
     gGame = { isOn: false, shownCount: 0, markedCount: 0, secsPassed: 0 }
     gBoard = buildBoard(gLevel.SIZE)
     renderBoard(gBoard, '.board-container')
@@ -35,10 +34,6 @@ function buildBoard(size) {
             }
         }
     }
-    //// check the function
-    // board[2][2].isMine = true
-    // board[3][3].isMine = true
-    //// check the function
     board = setMinesOnBoard(board)
     board = setMinesNegsCount(board)
 
@@ -102,50 +97,64 @@ function countMineNegs(cellI, cellJ, board) {
         }
     }
     return minesAroundCount
+
 }
 
-function clickedCell(elCell, i, j) {
+function clickedCell(elCell, cellI, cellJ) {
     if (!gGame.isOn) {
+
         gGame.isOn = true
         startStopwatch()
     }
-    // if (gBoard[i][j].minesAroundCount === 0) {
 
-    //     expandShown(i,j)
-        
-    // }
-    if (gBoard[i][j].isMine && !gBoard[i][j].isShown) {
+    elCell.minesAroundCount = countMineNegs(cellI, cellJ, gBoard)
 
+    if (elCell.minesAroundCount === 0) {
+        expandShown(gBoard, cellI, cellJ)
+        elCell.style.backgroundColor = '#b8aeae'
+
+    }
+    if (gBoard[cellI][cellJ].isMine && !gBoard[cellI][cellJ].isShown) {
         elCell.innerHTML = MINE
-        gBoard[i][j].isShown = true
+        gBoard[cellI][cellJ].isShown = true
         life--;
         var ellife = document.querySelector('h5')
         ellife.innerHTML = `lifes ${life}`
-        // console.log("life:", life);
         if (!life) {
             stop()
             gameOver(elCell)
 
         }
-
-
     }
+    else if (gBoard[cellI][cellJ].isMarked) return false
+    else if (gBoard[cellI][cellJ].isShown) return false
 
-    else if (gBoard[i][j].isMarked) return false
-    else if (gBoard[i][j].isShown) return false
     else {
-
-        gBoard[i][j].isMine = true
-        gBoard[i][j].isShown = true
-        elCell.innerHTML = gBoard[i][j].minesAroundCount
+        gBoard[cellI][cellJ].isMine = true
+        gBoard[cellI][cellJ].isShown = true
+        elCell.innerHTML = gBoard[cellI][cellJ].minesAroundCount
         checkWin()
 
+    }
+}
+function expandShown(board, rowIdx, colIdx) {
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i < 0 || i >= board.length) continue
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j < 0 || j >= board[i].length) continue
+            if (i === rowIdx && j === colIdx) continue
 
+            var elCell = board[i][j]
+
+            elCell.isShown = true
+            gGame.shownCount++
+
+        }
     }
 }
 //to click the right click in the mouse
 function cellMarked(elCell, i, j) {
-    if (gBoard[i][j].  isShown) return false;
+    if (gBoard[i][j].isShown) return false;
 
     if (gBoard[i][j].isMarked) {
         gBoard[i][j].isMarked = false
@@ -164,7 +173,7 @@ function checkWin() {
     for (var i = 0; i < gBoard.length; i++) {
         for (var j = 0; j < gBoard.length; j++) {
             if (gBoard[i][j].isShown) {
-                counter ++
+                counter++
             }
 
         }
@@ -173,9 +182,13 @@ function checkWin() {
         //addEvent=>stop the game when we win
         boardEl.addEventListener("click", stopProp, { capture: true })
         boardEl.addEventListener("contectmenu", stopProp, { capture: true })
-        var lost = document.querySelector('.restartBtn')
+        var win = document.querySelector('.restartBtn')
+        var win1 = document.querySelector('h1')
         var strHTML = WIN
-        lost.innerHTML = strHTML
+        win.innerHTML = strHTML
+        var strHTML1 = `you win!`
+        win1.innerHTML = strHTML1
+        win1.style.display = 'block'
         stop()
     }
 }
@@ -185,18 +198,13 @@ function gameOver(elCell) {
     boardEl.addEventListener("click", stopProp, { capture: true })
     boardEl.addEventListener("contectmenu", stopProp, { capture: true })
     gGame.isOn = false;
-    for (var i = 0; i < gBoard.length; i++) {
-        for (var j = 0; j < gBoard.length; j++) {
-            if (gBoard[i][j].isMine) {
-                elCell.innerHTML = MINE
-            }
-
-        }
-
-    }
-
+    var gameOverr = document.querySelector('h1')
+    var strHTML = `you lost!`
+    gameOverr.innerHTML = strHTML
+    gameOverr.style.display = 'block'
 
 }
+
 //to stop the game when we win or lost
 function stopProp(e) {
     e.stopImmediatePropagation()
@@ -216,20 +224,26 @@ function checkIfItsWork(board) {
     console.table(checkmyself)
 }
 
+function rules() {
+    var elhtml = document.querySelector('.rules')
+    var htmlStr = `Minesweeper is a game where mines are hidden in a grid of squares. Safe squares have numbers telling you how
+    many mines touch the square. You can use the number clues to solve the game by opening all of the safe squares. If
+    you click on a mine you lose the game!`
+    elhtml.innerHTML = htmlStr
 
+}
 
 //change levels
-function changeFromEasyToHard(size,mines) {
-    gLevel.SIZE=size
-    gLevel.MINES=mines
+function changeFromEasyToHard(size, mines) {
+    gLevel.SIZE = size
+    gLevel.MINES = mines
     initGame()
 }
 
 
 
-// function expandShown() To-do
 
-  
+
 
 
 

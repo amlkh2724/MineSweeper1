@@ -3,7 +3,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: top;
-  background-image: url("img/image002.jpg");
+  background-image: url("/img/image002.jpg");
   width: 100%;
   height: 100%;
   font-family: Arial, Helvetica;
@@ -31,18 +31,22 @@ body {
   position: relative;
   border: 5px solid rgb(60, 60, 68);
   border-radius: 10px;
-  box-shadow: 0px 0px 15px 5px rgba(30, 41, 47, 0.79);
+  box-shadow: 0px 0px 15px 5px rgb(53, 168, 231);
 }
 
-h1 {
-  background-color: white;
-  width: 320px;
-}
-
-h2 {
+.rules {
   display: block;
-  background-color: white;
+  height: 100px;
   width: 300px;
+  font-style: italic;
+  border: 5px solid;
+  -webkit-box-shadow: 4px -4px 15px 0px #FF1F1F, 12px -11px 7px 0px #FF9376, 20px -5px 7px 0px #FFE264, 20px 6px 7px 0px #F6FF33, 13px 12px 17px 0px #FF9527, 2px 17px 17px 0px #FF0000, -9px 21px 18px 0px #FFF212, -9px 6px 11px 0px #FF0808, -11px -9px 11px 0px #FFFA17, -11px -9px 11px 0px #FFFA17, 8px 0px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 4px -4px 15px 0px #FF1F1F, 12px -11px 7px 0px #FF9376, 20px -5px 7px 0px #FFE264, 20px 6px 7px 0px #F6FF33, 13px 12px 17px 0px #FF9527, 2px 17px 17px 0px #FF0000, -9px 21px 18px 0px #FFF212, -9px 6px 11px 0px #FF0808, -11px -9px 11px 0px #FFFA17, -11px -9px 11px 0px #FFFA17, 8px 0px 15px 5px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  color: red;
+  background-color: black;
+  cursor: pointer;
+
 }
 
 
@@ -63,6 +67,8 @@ h2 {
   margin: 0 auto;
   background: rgb(87, 87, 83);
   background: radial-gradient(circle, rgba(87, 87, 83, 0.8555045871559633) 46%, rgba(0, 0, 0, 1) 100%);
+  box-shadow: 0px 0px 15px 5px rgb(53, 168, 231);
+
   width: fit-content;
   border-radius: 15px;
 }
@@ -70,9 +76,6 @@ h2 {
 /* Clock design inside */
 .stopwatch {
   color: wheat;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   margin: 15px;
   font-size: 60px;
 }
@@ -86,38 +89,39 @@ h2 {
 }
 
 /* div  */
-.container{
+.container {
   display: flex;
 }
 
- /* for the buttons */
-.changeFromEasyToHard{
+/* for the buttons */
+.changeFromEasyToHard {
   display: flex;
   padding: 50px;
   width: 500px;
   margin-left: 560px;
 }
 
-.Easy{
+.Easy {
   background: rgb(87, 87, 83);
   background: radial-gradient(circle, rgba(87, 87, 83, 0.8555045871559633) 46%, rgba(0, 0, 0, 1) 100%);
+  box-shadow: 0px 0px 15px 5px rgb(53, 168, 231);
   cursor: pointer;
-
   border-radius: 5px;
-
   font-size: large;
   padding: 10px;
   margin: 12px
 }
 
-.Easy:hover{
+.Easy:hover {
   background-color: green;
+  box-shadow: 0px 0px 15px 5px rgb(64, 255, 0);
   color: white;
 }
 
-.Medium{
+.Medium {
   background: rgb(87, 87, 83);
   background: radial-gradient(circle, rgba(87, 87, 83, 0.8555045871559633) 46%, rgba(0, 0, 0, 1) 100%);
+  box-shadow: 0px 0px 15px 5px rgb(53, 168, 231);
   cursor: pointer;
   border-radius: 5px;
   font-size: large;
@@ -125,22 +129,38 @@ h2 {
   margin: 12px
 }
 
-.Medium:hover{
+.Medium:hover {
   background-color: rgba(80, 80, 47, 0.757);
+  box-shadow: 0px 0px 15px 5px rgb(217, 255, 0);
   color: white;
 }
 
-.Hard{
+.Hard {
   background: rgb(87, 87, 83);
   background: radial-gradient(circle, rgba(87, 87, 83, 0.8555045871559633) 46%, rgba(0, 0, 0, 1) 100%);
+  box-shadow: 0px 0px 15px 5px rgb(53, 168, 231);
+
   cursor: pointer;
   border-radius: 5px;
   font-size: large;
-  padding: 10px; 
-   margin: 12px
+  padding: 10px;
+  margin: 12px
 }
 
-.Hard:hover{
+.Hard:hover {
   background-color: red;
-  color-scheme:white
+  box-shadow: 0px 0px 15px 5px rgba(255, 4, 4, 0.935);
+  color-scheme: white
+}
+
+h1 {
+  display: none;
+  color: red;
+  background-color: rgb(0, 0, 0);
+  border: 8px solid;
+}
+
+.restartBtn {
+  background-color: black;
+  box-shadow: 0px 0px 15px 5px rgb(149, 27, 27);
 }
